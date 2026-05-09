@@ -84,7 +84,7 @@ class ROSCmdVelHandler(threading.Thread):
         self.running = False
 
 
-# ===================== Windows 稳定键盘控制 =====================
+# ===================== Windows 稳定键盘控制（已修复） =====================
 class KeyboardInputHandler(threading.Thread):
     def __init__(self, stabilizer):
         super().__init__(daemon=True)
@@ -102,8 +102,13 @@ class KeyboardInputHandler(threading.Thread):
         import msvcrt
         while self.running:
             if msvcrt.kbhit():
-                key = msvcrt.getch().decode('utf-8').lower()
-                self._handle_key(key)
+                # 修复：去掉decode('utf-8')，直接取字符
+                key = msvcrt.getch()
+                if key == b'\x03': # Ctrl+C
+                    break
+                key = key.decode('utf-8', errors='ignore').lower()
+                if key:
+                    self._handle_key(key)
             time.sleep(0.02)
 
     def _handle_key(self, key):
@@ -119,6 +124,7 @@ class KeyboardInputHandler(threading.Thread):
             self.stabilizer.set_state("STOP")
             print("👉 缓停站立")
         elif key == 'r':
+            self.stabilizer._init_stable_pose()
             self.stabilizer.set_state("STAND")
             self.stabilizer.set_turn_angle(0)
             print("👉 已复位")
@@ -610,6 +616,7 @@ class HumanoidStabilizer:
         ros = ROSCmdVelHandler(self)
         ros.start()
         kb = KeyboardInputHandler(self)
+        # 修复：启动键盘线程
         kb.start()
 
         try:
@@ -640,7 +647,7 @@ class HumanoidStabilizer:
             ros.stop()
 
 
-# ===================== PPO训练入口 =====================
+# ===================== PPO训练入口（已修复） =====================
 def train_ppo():
     current_directory = os.path.dirname(os.path.abspath(__file__))
     model_file_path = os.path.join(current_directory, "models", "humanoid.xml")
@@ -657,15 +664,15 @@ def train_ppo():
         gamma=0.99,
         device="cpu"
     )
-    print("开始PPO强化学习训练...")
+    print("🔰 开始PPO强化学习训练...")
     model.learn(total_timesteps=200000)
     model.save("humanoid_ppo_gait")
-    print(" PPO训练完成，模型已保存为 humanoid_ppo_gait.zip")
+    print("✅ PPO训练完成，模型已保存为 humanoid_ppo_gait.zip")
 
 
 if __name__ == "__main__":
     # 取消下面注释可开始训练
-    train_ppo()
+    # train_ppo()
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
     model_file_path = os.path.join(current_directory, "models", "humanoid.xml")
