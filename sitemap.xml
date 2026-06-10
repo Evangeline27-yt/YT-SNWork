@@ -41,6 +41,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://wengqiuyi.github.io/nn/arm_sim/</loc>
+         <lastmod>2026-06-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://wengqiuyi.github.io/nn/attention/</loc>
          <lastmod>2026-06-10</lastmod>
          <changefreq>daily</changefreq>
@@ -52,6 +57,11 @@
     </url>
     <url>
          <loc>https://wengqiuyi.github.io/nn/carla_auto_vision_navigator/</loc>
+         <lastmod>2026-06-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://wengqiuyi.github.io/nn/carla_yolo_planner/</loc>
          <lastmod>2026-06-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -151,6 +161,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://wengqiuyi.github.io/nn/carla_imu/carla_imu/</loc>
+         <lastmod>2026-06-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://wengqiuyi.github.io/nn/carla_traffic_sign_recognition/carla_traffic_sign_recognition/</loc>
          <lastmod>2026-06-10</lastmod>
          <changefreq>daily</changefreq>
@@ -196,12 +211,22 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://wengqiuyi.github.io/nn/mujoco_hci_sim/</loc>
+         <lastmod>2026-06-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://wengqiuyi.github.io/nn/mujoco_man/mujoco_manrun/</loc>
          <lastmod>2026-06-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://wengqiuyi.github.io/nn/mujoco_running/running/</loc>
+         <lastmod>2026-06-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://wengqiuyi.github.io/nn/muscle_humaniod/</loc>
          <lastmod>2026-06-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
