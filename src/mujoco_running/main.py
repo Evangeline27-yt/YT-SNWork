@@ -232,7 +232,7 @@ class CPGOscillator:
         self.state = np.array([np.sin(self.phase), np.cos(self.phase)])
 
 
-# ===================== 人形稳定控制器（最终优化版）=====================
+# ===================== 人形稳定控制器=====================
 class HumanoidStabilizer:
     def __init__(self, model_path, train_mode=False):
         self.train_mode = train_mode
@@ -862,7 +862,6 @@ class HumanoidGaitEnv(gym.Env):
         if (lf + rf) > 1:
             force_asym = (rf - lf) / (rf + lf + 1e-6)
             reward -= 2.0 * force_asym ** 2
-
         # 足端拖曳惩罚
         r_phase = self.stabilizer.right_leg_cpg.state[0]
         l_phase = self.stabilizer.left_leg_cpg.state[0]
